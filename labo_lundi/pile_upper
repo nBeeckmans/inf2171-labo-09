@@ -1,0 +1,33 @@
+.text 
+	addi sp, sp, -176
+	mv a0, sp
+	li a1, 80
+	call readString
+	
+	mv a0, sp
+	addi a0, a0, 81
+	li a1, 80
+	call readString 
+	
+	mv a0, sp
+	call uppercase
+	
+	mv a0, sp
+	addi a0, a0, 81
+	call uppercase
+	
+	mv a0, sp
+	addi a0, a0, 81
+	call printString
+	
+	li a0, '\n'
+	call printChar
+	
+	mv a0, sp
+	call printString 
+	
+	addi sp, sp, 176
+	
+	li a0, 0
+	call exit 
+	

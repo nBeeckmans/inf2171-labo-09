@@ -1,0 +1,49 @@
+	.global to_upper_case
+
+.data 
+str1:	.space 81 
+str2:	.space 81
+.text
+
+	la a0, str1
+	li a1, 80
+	call readString
+	
+	la a0, str2
+	li a1, 80
+	call readString
+
+	la a0, str1
+	jal to_upper_case
+	
+	la a0, str2
+	jal to_upper_case
+	
+	la a0, str2
+	call printString
+	
+	la a0, str1
+	call printString 
+	
+	li a0, 0
+	call exit
+	
+to_upper_case :
+	# a0, adresse du string
+	lbu t0, 0(a0)
+	beqz t0, end_upper_case
+	li t1, 'a'
+	li t2, 'z'
+	blt t0, t1, passer_char_suivant
+	bgt t0, t2, passer_char_suivant
+	
+	addi t0, t0, -32
+	sb t0, 0(a0)
+passer_char_suivant : 
+	addi a0, a0, 1
+	j to_upper_case 	
+end_upper_case:
+	ret 
+	
+	
+	
